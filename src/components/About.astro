@@ -1,0 +1,122 @@
+---
+import { about } from "../config.ts";
+---
+
+<article class="about active" data-page="about">
+  <header>
+    <h2 class="h2 article-title">About me</h2>
+  </header>
+
+  <section class="about-text">
+    {about.descriptions.map((description) => <p set:html={description} />)}
+  </section>
+
+  <section class="service">
+    <h3 class="h3 service-title">What I do</h3>
+
+    <ul class="service-list">
+      {
+        Object.keys(about.majors).map((major) => (
+          <li class="service-item">
+            <div class="service-content-box">
+              <h4 class="h4 service-item-title">{major}</h4>
+              <p class="service-item-text">{about.majors[major]}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+
+    <style>
+      .service-title {
+        margin-bottom: 20px;
+      }
+
+      .service-list {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .service-item {
+        position: relative;
+        background: var(--border-gradient-onyx);
+        padding: 20px;
+        border-radius: 14px;
+        box-shadow: var(--shadow-2);
+        z-index: 1;
+      }
+
+      .service-item::before {
+        content: "";
+        position: absolute;
+        inset: 1px;
+        background: var(--bg-gradient-jet);
+        border-radius: inherit;
+        z-index: -1;
+      }
+
+      .service-content-box {
+        text-align: center;
+      }
+
+      .service-item-title {
+        margin-bottom: 7px;
+      }
+
+      .service-item-text {
+        color: var(--light-gray);
+        font-size: var(--fs-6);
+        font-weight: var(--fw-3);
+        line-height: 1.6;
+      }
+
+      @media (min-width: 580px) {
+        .service-item {
+          display: flex;
+          justify-content: flex-start;
+          align-items: flex-start;
+          gap: 18px;
+          padding: 30px;
+        }
+
+        .service-content-box {
+          text-align: left;
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .service-list {
+          grid-template-columns: 1fr 1fr;
+          gap: 20px 25px;
+        }
+      }
+
+      .about[data-astro-cid-v2cbyr3p] .article-title[data-astro-cid-v2cbyr3p] {
+        margin-bottom: 15px;
+      }
+
+      .about-text[data-astro-cid-v2cbyr3p] {
+        color: white;
+        font-size: var(--fs-6);
+        font-weight: var(--fw-300);
+        line-height: 1.6;
+      }
+
+      .about-text[data-astro-cid-v2cbyr3p] p[data-astro-cid-v2cbyr3p] {
+        margin-bottom: 15px;
+      }
+
+      @media screen and (width >= 580px) {
+        .about[data-astro-cid-v2cbyr3p]
+          .article-title[data-astro-cid-v2cbyr3p] {
+          margin-bottom: 20px;
+        }
+
+        .about-text[data-astro-cid-v2cbyr3p] {
+          margin-bottom: 40px;
+        }
+      }
+    </style>
+  </section>
+</article>

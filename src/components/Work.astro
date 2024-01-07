@@ -1,0 +1,154 @@
+---
+import { work } from "../config.ts";
+---
+
+<article class="portfolio" data-page="work">
+  <header>
+    <h2 class="h2 article-title">Work</h2>
+  </header>
+
+  <section class="categories">
+    <ul class="items-list">
+      {
+        Object.keys(work).map((category) => (
+          <li class="category">
+            <button data-filter-btn={category}>{category}</button>
+          </li>
+        ))
+      }
+    </ul>
+
+    <div>
+      {
+        Object.entries(work).map(([category, items]) => (
+          <ul class="project-list" data-category={category}>
+            {items.map((item) => (
+              <li class="project-item">
+                <a href={item.link} target="blank">
+                  <figure class="project-img">
+                    <img src={item.pic} alt="finance" loading="lazy" />
+                  </figure>
+
+                  <h3 class="project-title">{item.name}</h3>
+                </a>
+              </li>
+            ))}
+          </ul>
+        ))
+      }
+    </div>
+  </section>
+</article>
+
+<style>
+  .items-list {
+    display: flex;
+    gap: 1rem;
+    color: white;
+  }
+
+  .category {
+    margin-bottom: 2rem;
+
+    button {
+      color: white;
+      text-transform: capitalize;
+    }
+
+    button.active {
+      color: gold;
+    }
+  }
+
+  .select-value {
+    text-transform: capitalize;
+  }
+
+  .project-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 30px;
+    margin-bottom: 10px;
+
+    a:hover .project-img::before {
+      background-color: hsla(0, 0%, 0%, 0.5);
+    }
+
+    .project-item > a:hover img {
+      transform: scale(1.1);
+    }
+
+    figure {
+      height: 230px;
+      position: relative;
+      width: 100%;
+      border-radius: 16px;
+      overflow: hidden;
+      margin-bottom: 15px;
+    }
+
+    .project-title {
+      color: white;
+      font-size: 15px;
+      font-weight: 400;
+      text-transform: capitalize;
+      line-height: 1.3;
+    }
+
+    .project-img {
+      border-radius: 16px;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: var(--transition-1);
+        display: block;
+      }
+
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: transparent;
+        z-index: 1;
+        transition: var(--transition-1);
+      }
+    }
+  }
+</style>
+
+<script>
+  const categories = ["projects", "blogs"];
+  const selectedValue = categories[0];
+  const portfolio = document.querySelector(".portfolio");
+  const itemsListContainer = document.querySelector(".items-list");
+  const categoriesElements = categories.map<HTMLAnchorElement>((c) =>
+    document.querySelector(`[data-category="${c}"]`)
+  );
+
+  const filterCategory = (category: string) => {
+    categoriesElements.forEach((c) => (c.style.display = "none"));
+    const categorySection = document.querySelector(
+      `[data-category="${category.toLowerCase()}"]`
+    ) as HTMLElement;
+    categorySection.style.display = "grid";
+  };
+
+  itemsListContainer.addEventListener("click", (e) => {
+    const target = e.target as HTMLAnchorElement;
+    if (target.tagName === "BUTTON") {
+      filterCategory(target.innerText);
+      portfolio.querySelector(".active")?.classList.remove("active");
+      target.classList.add("active");
+    }
+  });
+
+  filterCategory(selectedValue);
+  portfolio
+    .querySelector(`button[data-filter-btn="${selectedValue}"]`)
+    .classList.add("active");
+</script>

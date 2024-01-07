@@ -1,0 +1,220 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Profile from "../components/Profile.astro";
+import About from "../components/About.astro";
+import Nav from "../components/Nav.astro";
+import Exp from "../components/Exp.astro";
+import Work from "../components/Work.astro";
+---
+
+<Layout title="Portfolio: Sadanand Pai">
+  <main>
+    <Profile />
+    <div class="main-content">
+      <Nav />
+      <About />
+      <Exp />
+      <Work />
+    </div>
+  </main>
+</Layout>
+
+<style is:global>
+  .icon-box {
+    position: relative;
+    background: var(--border-gradient-onyx);
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    color: var(--orange-yellow-crayola);
+    box-shadow: var(--shadow-1);
+    z-index: 1;
+  }
+
+  .icon-box::before {
+    content: "";
+    position: absolute;
+    inset: 1px;
+    background: var(--eerie-black-1);
+    border-radius: inherit;
+    z-index: -1;
+  }
+
+  .icon-box ion-icon {
+    --ionicon-stroke-width: 35px;
+  }
+
+  article {
+    display: none;
+  }
+
+  article.active {
+    display: block;
+    animation: fade 0.5s ease backwards;
+  }
+
+  @keyframes fade {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  article {
+    background: var(--eerie-black-2);
+    border: 1px solid var(--jet);
+    border-radius: 20px;
+    padding: 15px;
+    box-shadow: var(--shadow-1);
+    z-index: 1;
+
+    .article-title {
+      position: relative;
+      padding-bottom: 15px;
+      margin-bottom: 20px;
+    }
+  }
+
+  .article-title::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 30px;
+    height: 3px;
+    background: var(--text-gradient-yellow);
+    border-radius: 3px;
+  }
+
+  main {
+    margin: 15px 12px;
+    margin-bottom: 75px;
+    min-width: 259px;
+  }
+
+  @media (min-width: 580px) {
+    :root {
+      --fs-1: 32px;
+      --fs-2: 24px;
+      --fs-3: 26px;
+      --fs-4: 18px;
+      --fs-6: 15px;
+      --fs-7: 15px;
+      --fs-8: 12px;
+    }
+
+    .sidebar,
+    article {
+      width: auto;
+      margin-inline: auto;
+      padding: 30px;
+    }
+
+    .article-title {
+      font-weight: var(--fw-600);
+      padding-bottom: 15px;
+    }
+
+    .article-title::after {
+      width: 40px;
+      height: 5px;
+    }
+
+    .icon-box {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      font-size: 18px;
+    }
+
+    main {
+      margin-top: 40px;
+      margin-bottom: 100px;
+    }
+  }
+
+  @media (min-width: 768px) {
+    body {
+      padding-left: 30px;
+      padding-right: 30px;
+    }
+
+    .has-scrollbar::-webkit-scrollbar-button {
+      width: 100px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    :root {
+      --shadow-1: -4px 8px 24px hsla(0, 0%, 0%, 0.5);
+      --shadow-2: 0 16px 30px hsla(0, 0%, 0%, 0.125);
+      --shadow-3: 0 16px 40px hsla(0, 0%, 0%, 0.125);
+    }
+
+    main {
+      margin-bottom: 60px;
+    }
+
+    .main-content {
+      position: relative;
+      margin: auto;
+    }
+  }
+
+  @media (min-width: 1450px) {
+    body::-webkit-scrollbar {
+      width: 20px;
+    }
+
+    body::-webkit-scrollbar-track {
+      background: var(--smoky-black);
+    }
+
+    body::-webkit-scrollbar-thumb {
+      border: 5px solid var(--smoky-black);
+      background: hsla(0, 0%, 100%, 0.1);
+      border-radius: 20px;
+      box-shadow:
+        inset 1px 1px 0 hsla(0, 0%, 100%, 0.11),
+        inset -1px -1px 0 hsla(0, 0%, 100%, 0.11);
+    }
+
+    body::-webkit-scrollbar-thumb:hover {
+      background: hsla(0, 0%, 100%, 0.15);
+    }
+
+    body::-webkit-scrollbar-button {
+      height: 60px;
+    }
+
+    .sidebar,
+    article {
+      width: auto;
+    }
+
+    article {
+      min-height: 100%;
+    }
+
+    main {
+      max-width: 1400px;
+      margin-inline: auto;
+      display: flex;
+      justify-content: center;
+      align-items: stretch;
+      gap: 25px;
+    }
+
+    .main-content {
+      min-width: 75%;
+      width: 75%;
+      margin: 0;
+    }
+  }
+</style>

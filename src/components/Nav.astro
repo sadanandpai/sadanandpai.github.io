@@ -1,0 +1,123 @@
+---
+import { navbar } from "../config.ts";
+---
+
+<nav class="navbar">
+  <ul class="navbar-list">
+    {
+      navbar.map((item) => (
+        <li class="navbar-item">
+          <button class="navbar-link" data-nav-link>
+            {item}
+          </button>
+        </li>
+      ))
+    }
+  </ul>
+</nav>
+
+<style>
+  .navbar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: hsla(240, 1%, 17%, 0.75);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--jet);
+    border-radius: 12px 12px 0 0;
+    box-shadow: var(--shadow-2);
+    z-index: 5;
+  }
+
+  .navbar-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 0 10px;
+  }
+
+  .navbar-link {
+    color: var(--light-gray);
+    font-size: var(--fs-8);
+    padding: 20px 7px;
+    transition: color var(--transition-1);
+    text-transform: capitalize;
+  }
+
+  .navbar-link:hover,
+  .navbar-link:focus {
+    color: var(--light-gray-70);
+  }
+
+  .navbar-link.active {
+    color: var(--orange-yellow-crayola);
+  }
+
+  @media (min-width: 580px) {
+    .navbar {
+      border-radius: 20px 20px 0 0;
+    }
+    .navbar-list {
+      gap: 20px;
+    }
+    .navbar-link {
+      --fs-8: 14px;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .navbar-link {
+      --fs-8: 15px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .navbar {
+      position: absolute;
+      bottom: auto;
+      top: 0;
+      left: auto;
+      right: 0;
+      width: max-content;
+      border-radius: 0 20px;
+      padding: 0 20px;
+      box-shadow: none;
+    }
+
+    .navbar-list {
+      gap: 30px;
+      padding: 0 20px;
+    }
+
+    .navbar-link {
+      font-weight: var(--fw-500);
+    }
+  }
+</style>
+
+<script>
+  const navigationLinks = document.querySelectorAll("[data-nav-link]");
+  const pages = document.querySelectorAll("[data-page]");
+
+  for (let i = 0; i < navigationLinks.length; i++) {
+    navigationLinks[i].addEventListener("click", function () {
+      for (let i = 0; i < pages.length; i++) {
+        if (
+          this.innerText.toLowerCase() ===
+          (pages[i] as HTMLElement).dataset.page
+        ) {
+          pages[i].classList.add("active");
+          navigationLinks[i].classList.add("active");
+          window.scrollTo(0, 0);
+        } else {
+          pages[i].classList.remove("active");
+          navigationLinks[i].classList.remove("active");
+        }
+      }
+    });
+  }
+
+  navigationLinks[0]?.classList.add("active");
+</script>
