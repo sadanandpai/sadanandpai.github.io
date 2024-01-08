@@ -15,7 +15,7 @@ export const profile = {
 
 export const about = {
   descriptions: [
-    `<strong>I am a ighly skilled senior frontend engineer with 10+ years of experience, currently driving web application development at Atlassian.</strong> I am an expert in core technologies like HTML, CSS, and JavaScript, with extensive expertise in building UIs and efficient functionalities.`,
+    `<strong>I am a highly skilled senior frontend engineer with 10+ years of experience, currently driving web application development at Atlassian.</strong> I am proficient in core technologies like HTML, CSS, and JavaScript, with extensive expertise in building UIs and efficient functionalities.`,
     `I leverage modern frameworks like ReactJS, NextJS, and Angular to deliver high-quality products, ensuring optimal performance and user experience. I am Proficient in collaborative environments, partnering effectively with designers, testers, and backend developers to achieve shared goals.`,
   ],
   majors: {
