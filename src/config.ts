@@ -9,7 +9,7 @@ export const profile = {
   social: {
     linkedin: "https://www.linkedin.com/in/sadanandpai/",
     github: "https://github.com/sadanandpai/",
-    twitter: "https://twitter.com/paicube",
+    twitter: "https://twitter.com/sadanand_pai",
   },
 };
 
