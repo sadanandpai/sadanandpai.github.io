@@ -15,19 +15,104 @@ const { title } = Astro.props;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    <script is:inline>
+      (() => {
+        const storageKey = "theme-preference";
+        const systemTheme = window.matchMedia("(prefers-color-scheme: dark)")
+          .matches
+          ? "dark"
+          : "light";
+
+        try {
+          const storedTheme = localStorage.getItem(storageKey);
+          document.documentElement.dataset.theme = storedTheme ?? systemTheme;
+        } catch {
+          document.documentElement.dataset.theme = systemTheme;
+        }
+      })();
+    </script>
   </head>
   <body>
+    <button class="theme-toggle" type="button" data-theme-toggle>
+      <span aria-hidden="true" data-theme-icon>🌙</span>
+    </button>
+
     <slot />
 
     <script
       type="module"
       src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
-    ></script>
+      is:inline></script>
+    <script is:inline>
+      (() => {
+        const storageKey = "theme-preference";
+        const root = document.documentElement;
+        const themeToggle = document.querySelector("[data-theme-toggle]");
+        const themeIcon = document.querySelector("[data-theme-icon]");
+        const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+
+        const getSystemTheme = () => (mediaQuery.matches ? "dark" : "light");
+
+        const getStoredTheme = () => {
+          try {
+            return localStorage.getItem(storageKey);
+          } catch {
+            return null;
+          }
+        };
+
+        const syncToggle = (theme) => {
+          if (!(themeToggle instanceof HTMLButtonElement)) {
+            return;
+          }
+
+          const isDarkTheme = theme === "dark";
+          themeToggle.setAttribute(
+            "aria-label",
+            isDarkTheme ? "Switch to light mode" : "Switch to dark mode",
+          );
+          themeToggle.setAttribute("aria-pressed", String(isDarkTheme));
+
+          if (themeIcon instanceof HTMLElement) {
+            themeIcon.textContent = isDarkTheme ? "🌙" : "☀️";
+          }
+        };
+
+        const applyTheme = (theme) => {
+          root.dataset.theme = theme;
+          syncToggle(theme);
+        };
+
+        applyTheme(root.dataset.theme || getSystemTheme());
+
+        mediaQuery.addEventListener("change", () => {
+          if (!getStoredTheme()) {
+            applyTheme(getSystemTheme());
+          }
+        });
+
+        if (themeToggle instanceof HTMLButtonElement) {
+          themeToggle.addEventListener("click", () => {
+            const currentTheme =
+              root.dataset.theme === "dark" ? "dark" : "light";
+            const nextTheme = currentTheme === "dark" ? "light" : "dark";
+            applyTheme(nextTheme);
+
+            try {
+              localStorage.setItem(storageKey, nextTheme);
+            } catch {
+              // no-op
+            }
+          });
+        }
+      })();
+    </script>
   </body>
 </html>
 
 <style is:global>
   :root {
+    color-scheme: dark;
     /**
    * colors
    */
@@ -39,7 +124,8 @@ const { title } = Astro.props;
       hsl(240, 1%, 25%) 3%,
       hsl(0, 0%, 19%) 97%
     );
-    --bg-gradient-jet: linear-gradient(
+    --bg-gradient-jet:
+      linear-gradient(
         to bottom right,
         hsla(240, 1%, 18%, 0.251) 0%,
         hsla(240, 2%, 11%, 0) 100%
@@ -50,7 +136,8 @@ const { title } = Astro.props;
       hsl(45, 100%, 71%) 0%,
       hsla(36, 100%, 69%, 0) 50%
     );
-    --bg-gradient-yellow-2: linear-gradient(
+    --bg-gradient-yellow-2:
+      linear-gradient(
         135deg,
         hsla(45, 100%, 71%, 0.251) 0%,
         hsla(35, 100%, 68%, 0) 59.86%
@@ -81,6 +168,11 @@ const { title } = Astro.props;
     --light-gray: hsl(0, 0%, 84%);
     --light-gray-70: hsla(0, 0%, 84%, 0.7);
     --bittersweet-shimmer: hsl(0, 43%, 51%);
+    --nav-bg: hsla(240, 1%, 17%, 0.75);
+    --image-overlay: hsla(0, 0%, 0%, 0.5);
+    --scrollbar-thumb-bg: hsla(0, 0%, 100%, 0.1);
+    --scrollbar-thumb-bg-hover: hsla(0, 0%, 100%, 0.15);
+    --scrollbar-thumb-inset: hsla(0, 0%, 100%, 0.11);
 
     /**
    * typography
@@ -123,6 +215,65 @@ const { title } = Astro.props;
     --transition-2: 0.5s ease-in-out;
   }
 
+  :root[data-theme="light"] {
+    color-scheme: light;
+    --text-gradient-yellow: linear-gradient(
+      to right,
+      hsl(208, 100%, 42%),
+      hsl(226, 90%, 52%)
+    );
+    --bg-gradient-onyx: linear-gradient(
+      to bottom right,
+      hsl(210, 40%, 98%) 3%,
+      hsl(210, 33%, 95%) 97%
+    );
+    --bg-gradient-jet:
+      linear-gradient(
+        to bottom right,
+        hsla(210, 28%, 68%, 0.2) 0%,
+        hsla(210, 28%, 68%, 0) 100%
+      ),
+      hsl(0, 0%, 100%);
+    --bg-gradient-yellow-1: linear-gradient(
+      to bottom right,
+      hsl(211, 100%, 60%) 0%,
+      hsla(211, 100%, 60%, 0) 50%
+    );
+    --bg-gradient-yellow-2:
+      linear-gradient(
+        135deg,
+        hsla(211, 100%, 60%, 0.32) 0%,
+        hsla(226, 90%, 58%, 0) 59.86%
+      ),
+      hsl(0, 0%, 100%);
+    --border-gradient-onyx: linear-gradient(
+      to bottom right,
+      hsl(210, 22%, 82%) 0%,
+      hsla(210, 22%, 82%, 0) 50%
+    );
+    --jet: hsl(214, 24%, 83%);
+    --onyx: hsl(210, 33%, 94%);
+    --eerie-black-1: hsl(0, 0%, 100%);
+    --eerie-black-2: hsl(210, 40%, 98%);
+    --smoky-black: hsl(210, 50%, 96%);
+    --white-1: hsl(220, 26%, 17%);
+    --white-2: hsl(220, 26%, 16%);
+    --orange-yellow-crayola: hsl(208, 100%, 42%);
+    --vegas-gold: hsl(222, 84%, 35%);
+    --light-gray: hsl(215, 16%, 35%);
+    --light-gray-70: hsla(215, 16%, 35%, 0.7);
+    --shadow-1: 0 8px 24px hsla(210, 20%, 20%, 0.08);
+    --shadow-2: 0 16px 30px hsla(210, 20%, 20%, 0.08);
+    --shadow-3: 0 16px 40px hsla(210, 20%, 20%, 0.08);
+    --shadow-4: 0 25px 50px hsla(210, 20%, 20%, 0.08);
+    --shadow-5: 0 24px 80px hsla(210, 20%, 20%, 0.08);
+    --nav-bg: hsla(0, 0%, 100%, 0.85);
+    --image-overlay: hsla(217, 28%, 18%, 0.18);
+    --scrollbar-thumb-bg: hsla(216, 25%, 25%, 0.2);
+    --scrollbar-thumb-bg-hover: hsla(216, 25%, 25%, 0.3);
+    --scrollbar-thumb-inset: hsla(0, 0%, 100%, 0.25);
+  }
+
   *,
   *::before,
   *::after {
@@ -158,6 +309,37 @@ const { title } = Astro.props;
 
   body {
     background: var(--smoky-black);
+    color: var(--white-2);
+  }
+
+  .theme-toggle {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    width: 44px;
+    height: 44px;
+    border-radius: 999px;
+    border: 1px solid var(--jet);
+    background: var(--eerie-black-1);
+    color: var(--white-2);
+    box-shadow: var(--shadow-2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 20;
+    transition:
+      transform var(--transition-1),
+      background-color var(--transition-1),
+      color var(--transition-1);
+  }
+
+  .theme-toggle:hover {
+    transform: translateY(-1px);
+  }
+
+  .theme-toggle:focus-visible {
+    outline: 2px solid var(--orange-yellow-crayola);
+    outline-offset: 2px;
   }
 
   .h2,

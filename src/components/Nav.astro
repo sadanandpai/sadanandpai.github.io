@@ -22,7 +22,7 @@ import { navbar } from "../config.ts";
     bottom: 0;
     left: 0;
     width: 100%;
-    background: hsla(240, 1%, 17%, 0.75);
+    background: var(--nav-bg);
     backdrop-filter: blur(10px);
     border: 1px solid var(--jet);
     border-radius: 12px 12px 0 0;
@@ -102,10 +102,11 @@ import { navbar } from "../config.ts";
   const pages = document.querySelectorAll("[data-page]");
 
   for (let i = 0; i < navigationLinks.length; i++) {
-    navigationLinks[i].addEventListener("click", function () {
+    navigationLinks[i].addEventListener("click", (event) => {
+      const currentButton = event.currentTarget as HTMLButtonElement;
       for (let i = 0; i < pages.length; i++) {
         if (
-          this.innerText.toLowerCase() ===
+          currentButton.innerText.toLowerCase() ===
           (pages[i] as HTMLElement).dataset.page
         ) {
           pages[i].classList.add("active");

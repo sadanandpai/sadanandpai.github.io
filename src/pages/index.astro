@@ -104,8 +104,8 @@ import Work from "../components/Work.astro";
       --fs-2: 24px;
       --fs-3: 26px;
       --fs-4: 18px;
-      --fs-6: 15px;
-      --fs-7: 15px;
+      --fs-6: 16px;
+      --fs-7: 14px;
       --fs-8: 12px;
     }
 
@@ -178,15 +178,15 @@ import Work from "../components/Work.astro";
 
     body::-webkit-scrollbar-thumb {
       border: 5px solid var(--smoky-black);
-      background: hsla(0, 0%, 100%, 0.1);
+      background: var(--scrollbar-thumb-bg);
       border-radius: 20px;
       box-shadow:
-        inset 1px 1px 0 hsla(0, 0%, 100%, 0.11),
-        inset -1px -1px 0 hsla(0, 0%, 100%, 0.11);
+        inset 1px 1px 0 var(--scrollbar-thumb-inset),
+        inset -1px -1px 0 var(--scrollbar-thumb-inset);
     }
 
     body::-webkit-scrollbar-thumb:hover {
-      background: hsla(0, 0%, 100%, 0.15);
+      background: var(--scrollbar-thumb-bg-hover);
     }
 
     body::-webkit-scrollbar-button {

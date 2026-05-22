@@ -16,11 +16,11 @@ import { about } from "../config.ts";
 
     <ul class="service-list">
       {
-        Object.keys(about.majors).map((major) => (
+        Object.entries(about.majors).map(([major, detail]) => (
           <li class="service-item">
             <div class="service-content-box">
               <h4 class="h4 service-item-title">{major}</h4>
-              <p class="service-item-text">{about.majors[major]}</p>
+              <p class="service-item-text">{detail}</p>
             </div>
           </li>
         ))
@@ -97,7 +97,7 @@ import { about } from "../config.ts";
       }
 
       .about-text[data-astro-cid-v2cbyr3p] {
-        color: white;
+        color: var(--white-2);
         font-size: var(--fs-6);
         font-weight: var(--fw-300);
         line-height: 1.6;
