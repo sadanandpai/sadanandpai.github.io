@@ -36,31 +36,51 @@ export const experience = {
       name: "Atlassian",
       duration: "Nov 2023 - Present",
       role: "Senior Software Developer",
-      description: "",
+      description: [
+        "Served as Feature Lead for a cross-product approval management system at Atlassian, delivering scalable, high-quality capabilities in React.",
+        "Played a key role in bootstrapping a unified Partner portal by establishing core platform foundations and observability instrumentation.",
+        "Engineered an AI-driven partner ranking solution that transformed large-scale partner health data into actionable machine learning insights.",
+        "Led specification-driven development for new initiatives, guiding the team to deliver maintainable, production-grade features with consistent quality.",
+      ],
     },
     {
       name: "CoinDCX",
       duration: "Apr 2021 - Oct 2023",
       role: "Senior Software Developer",
-      description: "",
+      description: [
+        "Led the foundation & design of highly performant <a href='https://coindcx.com/futures/'>Advanced Web Trading Terminal</a> for crypto using <strong>NextJS</strong>.",
+        "Architected and built a complete payment module from scratch for deposits and withdrawals in <strong>React</strong> & <strong>Angular</strong>.",
+        "Drove the setup & integration of tools such as <strong>Storybook</strong>, <strong>Docker</strong>, <strong>Vitest</strong>, etc. to build stable production ready system with great developer productivity.",
+        "Inititated the repo using lerna to build sharable components and libraries for the team to use across the projects.",
+      ],
     },
     {
       name: "Trelleborg",
       duration: "Mar 2019 - Mar 2021",
       role: "Senior Software Developer",
-      description: "",
+      description: [
+        "Architected and developed an Employee Customer relationship management system using <strong>ReactJS</strong> and <strong>Redux Toolkit</strong> with insustry standard practices.",
+        "Rebuilt the Dealer Locator web app for responsive, pixel-perfect experiences using <strong>HTML</strong>, <strong>CSS</strong>, and <strong>jQuery</strong> with Google Maps features.",
+        "Contributed to multilingual support and complex enhancements to state management for an <strong>Angular</strong> application called Fender Selection Tool.",
+      ],
     },
     {
       name: "TEKSystems",
       duration: "Mar 2018 - Feb 2019",
       role: "Senior Software Developer",
-      description: "",
+      description: [
+        "Built <strong>authentication & authorization</strong> for a User Management System.",
+        "Worked on major <strong>CRUD</strong> workflows using an <strong>OAuth</strong>-based strategy.",
+      ],
     },
     {
       name: "Infosys",
       duration: "Feb 2013 - Dec 2017",
       role: "Senior Software Developer",
-      description: "",
+      description: [
+        "Designed and developed a responsive web interface for Data Manager using <strong>AngularJS</strong> and <strong>Bootstrap</strong>.",
+        "Built an <strong>end-to-end automation framework</strong> in Java & Jubula for Huawei's network configuration assistant tool.",
+      ],
     },
   ],
   education: [

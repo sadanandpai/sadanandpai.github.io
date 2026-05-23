@@ -1,18 +1,40 @@
 ---
 import { work } from "../config.ts";
+
+const entries = Object.entries(work);
+const firstCategory = entries[0]?.[0] ?? "";
+
+const resolveLink = (url: string) => {
+  if (url.startsWith("http://") || url.startsWith("https://")) {
+    return url;
+  }
+  if (url.startsWith("/")) {
+    return url;
+  }
+  return `https://frontendpro.hashnode.dev/${url}`;
+};
 ---
 
-<article class="portfolio" data-page="work">
-  <header>
-    <h2 class="h2 article-title">Work</h2>
+<section class="portfolio section-card" id="work">
+  <header class="section-heading">
+    <div>
+      <h2 class="article-title">Projects and Work</h2>
+    </div>
   </header>
 
-  <section class="categories">
-    <ul class="items-list">
+  <section class="categories" aria-label="Work categories">
+    <ul class="items-list" role="tablist" aria-label="Portfolio categories">
       {
-        Object.keys(work).map((category) => (
+        entries.map(([category]) => (
           <li class="category">
-            <button data-filter-btn={category}>{category}</button>
+            <button
+              type="button"
+              role="tab"
+              data-filter-btn={category}
+              aria-selected={category === firstCategory ? "true" : "false"}
+            >
+              {category}
+            </button>
           </li>
         ))
       }
@@ -20,15 +42,20 @@ import { work } from "../config.ts";
 
     <div>
       {
-        Object.entries(work).map(([category, group]) => (
+        entries.map(([category, group]) => (
           <ul
             class="project-list"
             data-category={category}
             data-view={group.view}
+            hidden={category !== firstCategory}
           >
             {group.items.map((item) => (
               <li class="project-item">
-                <a href={item.link} target="_blank" rel="noopener noreferrer">
+                <a
+                  href={resolveLink(item.link)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <figure class="project-img">
                     <img src={item.pic} alt={item.name} loading="lazy" />
                   </figure>
@@ -56,125 +83,174 @@ import { work } from "../config.ts";
       }
     </div>
   </section>
-</article>
+</section>
 
 <style>
+  .portfolio {
+    display: grid;
+    gap: 1.2rem;
+  }
+
+  .categories {
+    display: grid;
+    gap: 1rem;
+  }
+
   .items-list {
     display: flex;
-    gap: 1rem;
-    color: var(--white-2);
+    gap: 0.6rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding-bottom: 0.15rem;
+  }
+
+  .items-list::-webkit-scrollbar {
+    display: none;
   }
 
   .category {
-    margin-bottom: 2rem;
-
-    button {
-      color: var(--white-2);
-      text-transform: capitalize;
-    }
-
-    button.active {
-      color: var(--orange-yellow-crayola);
-    }
+    margin-bottom: 0;
   }
 
-  .select-value {
+  .category button {
+    color: var(--text-muted);
+    text-transform: capitalize;
+    padding: 0.52rem 0.9rem;
+    border-radius: var(--radius-pill);
+    border: 1px solid transparent;
+    background: transparent;
+    font-size: var(--fs-7);
+    font-weight: var(--fw-600);
+    transition:
+      color var(--transition-1),
+      background-color var(--transition-1),
+      border-color var(--transition-1);
+  }
+
+  .category button:hover,
+  .category button:focus-visible {
+    color: var(--text-primary);
+    background: var(--bg-elevated);
+    border-color: var(--border-subtle);
+  }
+
+  .category button.active {
+    color: var(--accent);
+    background: var(--accent-soft);
+    border-color: var(--border-strong);
+  }
+
+  .select-value,
+  .project-title {
     text-transform: capitalize;
   }
 
-  .project-list {
-    margin-bottom: 10px;
+  .project-list[hidden] {
+    display: none !important;
   }
 
-  /* Shared item hover effects */
+  .project-list {
+    margin-bottom: 0;
+  }
+
   .project-list a {
     color: inherit;
     display: block;
   }
 
-  .project-list a:hover .project-img::before {
-    background-color: var(--image-overlay);
-  }
-
-  .project-item > a:hover img {
-    transform: scale(1.05);
-  }
-
   .project-img {
     position: relative;
-    border-radius: 16px;
+    border-radius: 14px;
     overflow: hidden;
+    border: 1px solid var(--border-subtle);
+  }
 
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: var(--transition-1);
-      display: block;
-    }
+  .project-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-1);
+    display: block;
+  }
 
-    &::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: transparent;
-      z-index: 1;
-      transition: var(--transition-1);
-    }
+  .project-img::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: transparent;
+    z-index: 1;
+    transition: background-color var(--transition-1);
   }
 
   .project-title {
-    color: var(--white-2);
-    font-size: 15px;
-    font-weight: 500;
-    text-transform: capitalize;
+    color: var(--text-primary);
+    font-size: var(--fs-5);
+    font-weight: var(--fw-600);
     line-height: 1.3;
   }
 
-  /* ---------- GRID VIEW (blogs) ---------- */
   .project-list[data-view="grid"] {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 0.9rem;
   }
 
   .project-list[data-view="grid"] .project-img {
-    height: 230px;
+    height: 180px;
     width: 100%;
-    margin-bottom: 15px;
+    margin-bottom: 0.7rem;
   }
 
-  /* ---------- LIST VIEW (projects) ---------- */
   .project-list[data-view="list"] {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 0.8rem;
   }
 
   .project-list[data-view="list"] .project-item > a {
     display: flex;
-    gap: 16px;
+    gap: 0.9rem;
     align-items: flex-start;
-    background: var(--bg-gradient-jet);
-    border: 1px solid var(--jet);
-    border-radius: 14px;
-    padding: 14px;
+    background: color-mix(in srgb, var(--bg-elevated) 80%, transparent);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    padding: 0.85rem;
     box-shadow: var(--shadow-1);
     transition:
       transform var(--transition-1),
+      box-shadow var(--transition-1),
+      border-color var(--transition-1);
+  }
+
+  .project-list[data-view="grid"] .project-item > a {
+    background: color-mix(in srgb, var(--bg-elevated) 80%, transparent);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    padding: 0.72rem;
+    transition:
+      transform var(--transition-1),
+      border-color var(--transition-1),
       box-shadow var(--transition-1);
   }
 
-  .project-list[data-view="list"] .project-item > a:hover {
+  .project-item > a:hover {
     transform: translateY(-2px);
     box-shadow: var(--shadow-2);
+    border-color: var(--border-strong);
+  }
+
+  .project-item > a:hover .project-img::before {
+    background-color: var(--image-overlay);
+  }
+
+  .project-item > a:hover .project-img img {
+    transform: scale(1.04);
   }
 
   .project-list[data-view="list"] .project-img {
     flex-shrink: 0;
-    width: 120px;
-    height: 90px;
-    border-radius: 10px;
+    width: 130px;
+    height: 96px;
   }
 
   .project-list[data-view="list"] .project-info {
@@ -185,12 +261,12 @@ import { work } from "../config.ts";
   }
 
   .project-list[data-view="list"] .project-title {
-    font-size: var(--fs-4);
+    font-size: var(--fs-5);
   }
 
   .project-description {
-    color: var(--light-gray);
-    font-size: var(--fs-6);
+    color: var(--text-secondary);
+    font-size: var(--fs-7);
     font-weight: var(--fw-300);
     line-height: 1.55;
   }
@@ -203,13 +279,15 @@ import { work } from "../config.ts";
   }
 
   .project-tag {
-    color: var(--orange-yellow-crayola);
-    background: var(--onyx);
-    border: 1px solid var(--jet);
+    color: var(--accent);
+    background: var(--accent-soft);
+    border: 1px solid
+      color-mix(in srgb, var(--accent) 25%, var(--border-subtle));
     border-radius: 999px;
     font-size: var(--fs-8);
     padding: 3px 10px;
     line-height: 1.4;
+    font-weight: var(--fw-600);
   }
 
   @media (max-width: 579px) {
@@ -222,56 +300,56 @@ import { work } from "../config.ts";
       height: 160px;
     }
   }
+
+  @media (min-width: 1024px) {
+    .project-list[data-view="grid"] {
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1rem;
+    }
+
+    .project-list[data-view="grid"] .project-img {
+      height: 190px;
+    }
+  }
 </style>
 
 <script>
-  type WorkView = "list" | "grid";
-
-  const categories = ["projects", "blogs"] as const;
-  const selectedValue = categories[0];
-  const portfolio = document.querySelector<HTMLElement>(".portfolio");
-  const itemsListContainer = document.querySelector<HTMLElement>(".items-list");
-  const categoriesElements = categories
-    .map((c) => document.querySelector<HTMLElement>(`[data-category="${c}"]`))
-    .filter((element): element is HTMLElement => element !== null);
-
-  const resolveDisplay = (view: WorkView | undefined): string => {
-    if (view === "list") {
-      return "flex";
-    }
-    return "grid";
-  };
-
-  const filterCategory = (category: string) => {
-    categoriesElements.forEach((c) => (c.style.display = "none"));
-    const categorySection = document.querySelector<HTMLElement>(
-      `[data-category="${category.toLowerCase()}"]`
+  const portfolio = document.querySelector<HTMLElement>("#work");
+  if (portfolio) {
+    const buttons = Array.from(
+      portfolio.querySelectorAll<HTMLButtonElement>("button[data-filter-btn]"),
     );
-    if (categorySection) {
-      const view = categorySection.dataset.view as WorkView | undefined;
-      categorySection.style.display = resolveDisplay(view);
-    }
-  };
+    const sections = Array.from(
+      portfolio.querySelectorAll<HTMLElement>("[data-category]"),
+    );
 
-  if (portfolio && itemsListContainer) {
-    itemsListContainer.addEventListener("click", (e) => {
-      const target = e.target as HTMLElement;
+    const setCategory = (category: string) => {
+      sections.forEach((section) => {
+        section.hidden = section.dataset.category !== category;
+      });
+
+      buttons.forEach((button) => {
+        const isActive = button.dataset.filterBtn === category;
+        button.classList.toggle("active", isActive);
+        button.setAttribute("aria-selected", isActive ? "true" : "false");
+      });
+    };
+
+    const firstButton = buttons[0];
+    if (firstButton?.dataset.filterBtn) {
+      setCategory(firstButton.dataset.filterBtn);
+    }
+
+    portfolio.addEventListener("click", (event) => {
+      const target = event.target as HTMLElement;
       const button = target.closest<HTMLButtonElement>(
-        "button[data-filter-btn]"
+        "button[data-filter-btn]",
       );
-      if (!button) {
+      const category = button?.dataset.filterBtn;
+      if (!category) {
         return;
       }
-
-      filterCategory(button.innerText);
-      portfolio.querySelector(".active")?.classList.remove("active");
-      button.classList.add("active");
+      setCategory(category);
     });
-
-    filterCategory(selectedValue);
-    const defaultButton = portfolio.querySelector<HTMLButtonElement>(
-      `button[data-filter-btn="${selectedValue}"]`
-    );
-    defaultButton?.classList.add("active");
   }
 </script>
