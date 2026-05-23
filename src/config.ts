@@ -124,7 +124,7 @@ export const experience = {
       totalExp: "2+ years",
       role: "Senior Software Developer",
       description: [
-        "Served as Feature Lead for a cross-product approval management system at Atlassian, delivering scalable, high-quality capabilities in React.",
+        "Serving as Feature Lead for a cross-product approval management system at Atlassian, delivering scalable, high-quality capabilities in React.",
         "Played a key role in bootstrapping a unified Partner portal by establishing core platform foundations and observability instrumentation.",
         "Engineered an AI-driven partner ranking solution that transformed large-scale partner health data into actionable machine learning insights.",
         "Led specification-driven development for new initiatives, guiding the team to deliver maintainable, production-grade features with consistent quality.",
@@ -234,25 +234,17 @@ export const work: Record<string, WorkCategory> = {
         pic: "/images/work/4.png",
         link: "https://github.com/sadanandpai/resume-builder",
         description:
-          "Create a clean, single-page, professional resume in minutes through a guided form-driven editor — built with React, Next.js, and TypeScript.",
+          "Create a clean, single-page, professional resume in minutes through a guided form-driven editor — with customisable templates and themes!",
         tags: ["Next.js", "React", "TypeScript"],
       },
       {
-        name: "Sorting Visualizer",
+        name: "Algo Visualizers",
         pic: "/images/work/5.png",
         link: "https://github.com/sadanandpai/algo-visualizers",
         description:
-          "Interactive visualizer for sorting and pathfinding algorithms including BFS, DFS, and maze generation — built with React, Redux Toolkit, and TypeScript.",
+          "Interactive visualizer for sorting and pathfinding algorithms including BFS, DFS, and maze generation using generators and iterators design patterns",
         tags: ["React", "Redux Toolkit", "TypeScript", "Algorithms"],
-      },
-      {
-        name: "Git Guide",
-        pic: "/images/work/6.png",
-        link: "https://github.com/sadanandpai/git-guide",
-        description:
-          "Practical no-fluff guide to everyday Git commands — covering branches, merges, rebases, and pull requests across GitHub, GitLab, and Bitbucket workflows.",
-        tags: ["Git", "GitHub", "GitLab"],
-      },
+      }
     ],
   },
 
