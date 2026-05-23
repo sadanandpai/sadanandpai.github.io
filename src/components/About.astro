@@ -1,11 +1,11 @@
 ---
-import { about } from "../config.ts";
+import { about, sectionContent } from "../config.ts";
 ---
 
 <section class="about section-card" id="about">
   <header class="section-heading">
     <div>
-      <h2 class="article-title">Building meaningful product experiences</h2>
+      <h2 class="article-title">{sectionContent.about.heading}</h2>
     </div>
   </header>
 
@@ -14,7 +14,9 @@ import { about } from "../config.ts";
   </section>
 
   <section class="service" aria-labelledby="service-heading">
-    <h3 class="h3 service-title" id="service-heading">Core strengths</h3>
+    <h3 class="h3 service-title" id="service-heading">
+      {sectionContent.about.strengthsHeading}
+    </h3>
 
     <ul class="service-list">
       {
@@ -97,7 +99,7 @@ import { about } from "../config.ts";
 
   .service-item-text {
     color: var(--text-secondary);
-    font-size: var(--fs-7);
+    font-size: var(--fs-6);
     line-height: 1.65;
   }
 

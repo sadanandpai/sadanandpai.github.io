@@ -3,6 +3,7 @@ interface Props {
   title: string;
 }
 
+import { site } from "../config.ts";
 const { title } = Astro.props;
 ---
 
@@ -10,10 +11,7 @@ const { title } = Astro.props;
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="description"
-      content="Portfolio of Sadanand Pai - Frontend AI Engineer building modern product experiences."
-    />
+    <meta name="description" content={site.description} />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
@@ -36,8 +34,15 @@ const { title } = Astro.props;
     </script>
   </head>
   <body>
-    <button class="theme-toggle" type="button" data-theme-toggle aria-live="polite">
-      <span class="theme-toggle-icon" aria-hidden="true" data-theme-icon>🌙</span>
+    <button
+      class="theme-toggle"
+      type="button"
+      data-theme-toggle
+      aria-live="polite"
+    >
+      <span class="theme-toggle-icon" aria-hidden="true" data-theme-icon
+        >🌙</span
+      >
     </button>
 
     <slot />
@@ -117,20 +122,20 @@ const { title } = Astro.props;
   :root {
     color-scheme: dark;
     --ff-base:
-      "Inter", "SF Pro Text", "Segoe UI", -apple-system, BlinkMacSystemFont, "Roboto",
-      sans-serif;
+      "Inter", "SF Pro Text", "Segoe UI", -apple-system, BlinkMacSystemFont,
+      "Roboto", sans-serif;
     --ff-heading:
       "Inter", "SF Pro Display", "Segoe UI", -apple-system, BlinkMacSystemFont,
       "Roboto", sans-serif;
 
-    --fs-1: clamp(2rem, 3.1vw, 2.9rem);
-    --fs-2: clamp(1.5rem, 2.2vw, 2rem);
-    --fs-3: clamp(1.25rem, 1.65vw, 1.5rem);
-    --fs-4: 1.08rem;
-    --fs-5: 1rem;
-    --fs-6: 0.96rem;
-    --fs-7: 0.86rem;
-    --fs-8: 0.76rem;
+    --fs-1: clamp(2.05rem, 3.2vw, 3rem);
+    --fs-2: clamp(1.62rem, 2.3vw, 2.12rem);
+    --fs-3: clamp(1.34rem, 1.75vw, 1.62rem);
+    --fs-4: 1.14rem;
+    --fs-5: 1.04rem;
+    --fs-6: 0.99rem;
+    --fs-7: 0.92rem;
+    --fs-8: 0.82rem;
 
     --fw-300: 300;
     --fw-400: 400;
@@ -160,7 +165,7 @@ const { title } = Astro.props;
     --border-subtle: rgba(148, 163, 184, 0.2);
     --border-strong: rgba(129, 140, 248, 0.45);
     --text-primary: #f8fafc;
-    --text-secondary: #cbd5e1;
+    --text-secondary: #e6e6e6;
     --text-muted: #94a3b8;
     --accent: hsl(45, 100%, 72%);
     --accent-strong: hsl(35, 100%, 68%);
@@ -484,6 +489,14 @@ const { title } = Astro.props;
   }
 
   @media (max-width: 767px) {
+    .page-shell {
+      padding-inline: 0.8rem;
+    }
+
+    .section-card {
+      padding-inline: 0.95rem;
+    }
+
     .theme-toggle {
       top: 14px;
       right: 14px;

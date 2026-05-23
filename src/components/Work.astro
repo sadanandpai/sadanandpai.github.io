@@ -1,5 +1,5 @@
 ---
-import { work } from "../config.ts";
+import { sectionContent, work } from "../config.ts";
 
 const entries = Object.entries(work);
 const firstCategory = entries[0]?.[0] ?? "";
@@ -18,12 +18,16 @@ const resolveLink = (url: string) => {
 <section class="portfolio section-card" id="work">
   <header class="section-heading">
     <div>
-      <h2 class="article-title">Projects and Work</h2>
+      <h2 class="article-title">{sectionContent.work.heading}</h2>
     </div>
   </header>
 
   <section class="categories" aria-label="Work categories">
-    <ul class="items-list" role="tablist" aria-label="Portfolio categories">
+    <ul
+      class="items-list"
+      role="tablist"
+      aria-label={sectionContent.work.categoriesAriaLabel}
+    >
       {
         entries.map(([category]) => (
           <li class="category">
@@ -31,6 +35,9 @@ const resolveLink = (url: string) => {
               type="button"
               role="tab"
               data-filter-btn={category}
+              id={`work-tab-${category}`}
+              aria-controls={`work-panel-${category}`}
+              tabindex={category === firstCategory ? "0" : "-1"}
               aria-selected={category === firstCategory ? "true" : "false"}
             >
               {category}
@@ -47,6 +54,10 @@ const resolveLink = (url: string) => {
             class="project-list"
             data-category={category}
             data-view={group.view}
+            role="tabpanel"
+            id={`work-panel-${category}`}
+            aria-labelledby={`work-tab-${category}`}
+            tabindex={category === firstCategory ? "0" : "-1"}
             hidden={category !== firstCategory}
           >
             {group.items.map((item) => (
@@ -287,7 +298,7 @@ const resolveLink = (url: string) => {
     font-size: var(--fs-8);
     padding: 3px 10px;
     line-height: 1.4;
-    font-weight: var(--fw-600);
+    font-weight: var(--fw-500);
   }
 
   @media (max-width: 579px) {
@@ -325,13 +336,16 @@ const resolveLink = (url: string) => {
 
     const setCategory = (category: string) => {
       sections.forEach((section) => {
-        section.hidden = section.dataset.category !== category;
+        const isActive = section.dataset.category === category;
+        section.hidden = !isActive;
+        section.tabIndex = isActive ? 0 : -1;
       });
 
       buttons.forEach((button) => {
         const isActive = button.dataset.filterBtn === category;
         button.classList.toggle("active", isActive);
         button.setAttribute("aria-selected", isActive ? "true" : "false");
+        button.tabIndex = isActive ? 0 : -1;
       });
     };
 
@@ -350,6 +364,49 @@ const resolveLink = (url: string) => {
         return;
       }
       setCategory(category);
+    });
+
+    portfolio.addEventListener("keydown", (event) => {
+      const target = event.target as HTMLElement;
+      const currentTab =
+        target.closest<HTMLButtonElement>("button[role='tab']");
+      if (!currentTab) {
+        return;
+      }
+
+      const currentIndex = buttons.indexOf(currentTab);
+      if (currentIndex < 0) {
+        return;
+      }
+
+      let nextIndex = currentIndex;
+      switch (event.key) {
+        case "ArrowRight":
+        case "ArrowDown":
+          nextIndex = (currentIndex + 1) % buttons.length;
+          break;
+        case "ArrowLeft":
+        case "ArrowUp":
+          nextIndex = (currentIndex - 1 + buttons.length) % buttons.length;
+          break;
+        case "Home":
+          nextIndex = 0;
+          break;
+        case "End":
+          nextIndex = buttons.length - 1;
+          break;
+        default:
+          return;
+      }
+
+      event.preventDefault();
+      const nextButton = buttons[nextIndex];
+      const nextCategory = nextButton?.dataset.filterBtn;
+      if (!nextButton || !nextCategory) {
+        return;
+      }
+      setCategory(nextCategory);
+      nextButton.focus();
     });
   }
 </script>

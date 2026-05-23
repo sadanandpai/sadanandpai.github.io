@@ -1,4 +1,34 @@
-export const navbar = ["about", "experience", "work"];
+export const navbar = ["about", "skills", "experience", "work"];
+
+export const site = {
+  title: "Portfolio: Sadanand Pai",
+  description:
+    "Portfolio of Sadanand Pai - Frontend AI Engineer building modern product experiences.",
+};
+
+export const sectionContent = {
+  profile: {
+    intro:
+      "Product-minded engineer focused on scalable frontend architecture, AI-native UX, and developer-friendly systems.",
+    viewWorkLabel: "View my work",
+  },
+  about: {
+    heading: "Building meaningful product experiences",
+    strengthsHeading: "Core strengths",
+  },
+  skills: {
+    heading: "Skills and technologies",
+  },
+  experience: {
+    heading: "Career journey",
+    professionalHeading: "Professional",
+    educationHeading: "Education",
+  },
+  work: {
+    heading: "Projects and Work",
+    categoriesAriaLabel: "Portfolio categories",
+  },
+};
 
 export const profile = {
   name: "Sadanand Pai",
@@ -30,11 +60,68 @@ export const about = {
   },
 };
 
+export const skills: Record<string, string[]> = {
+  "Technical Expertise": [
+    "NextJS",
+    "React",
+    "Angular",
+    "Node.js",
+    "JavaScript",
+    "TypeScript",
+    "HTML5",
+    "CSS3",
+    "Algorithms",
+    "Data Structures",
+    "Problem Solving",
+    "System Design",
+  ],
+  "Frameworks & Libraries": [
+    "Redux",
+    "GraphQL",
+    "React Query",
+    "SCSS",
+    "Tailwind",
+    "Vitest",
+    "Playwright",
+    "Storybook",
+    "Express",
+    "SQL"
+  ],
+  "Skills & Exposure": [
+    "Component Based Architecture",
+    "Agile Methodology",
+    "RESTful architecture",
+    "Model View Controller (MVC)",
+    "Design Patterns",
+    "Test Driven Development",
+    "Spec Driven Development",
+    "Prompt Engineering"
+  ],
+  "AI Engineering": [
+    "NumPy",
+    "Pandas",
+    "Scikit-learn",
+    "TensorFlow",
+    "Machine Learning",
+    "Large Language Models (LLMs)",
+    "Retrieval Augmented Generation (RAG)",
+  ],
+  Tooling: [
+    "Git",
+    "Docker",
+    "Jira",
+    "Webpack",
+    "Vite",
+    "Cursor"
+  ],
+};
+
 export const experience = {
   professional: [
     {
       name: "Atlassian",
       duration: "Nov 2023 - Present",
+      totalExp: "2+ years",
       role: "Senior Software Developer",
       description: [
         "Served as Feature Lead for a cross-product approval management system at Atlassian, delivering scalable, high-quality capabilities in React.",
@@ -46,6 +133,7 @@ export const experience = {
     {
       name: "CoinDCX",
       duration: "Apr 2021 - Oct 2023",
+      totalExp: "2 years 7 months",
       role: "Senior Software Developer",
       description: [
         "Led the foundation & design of highly performant <a href='https://coindcx.com/futures/'>Advanced Web Trading Terminal</a> for crypto using <strong>NextJS</strong>.",
@@ -57,6 +145,7 @@ export const experience = {
     {
       name: "Trelleborg",
       duration: "Mar 2019 - Mar 2021",
+      totalExp: "2 years",
       role: "Senior Software Developer",
       description: [
         "Architected and developed an Employee Customer relationship management system using <strong>ReactJS</strong> and <strong>Redux Toolkit</strong> with insustry standard practices.",
@@ -67,6 +156,7 @@ export const experience = {
     {
       name: "TEKSystems",
       duration: "Mar 2018 - Feb 2019",
+      totalExp: "1 year",
       role: "Senior Software Developer",
       description: [
         "Built <strong>authentication & authorization</strong> for a User Management System.",
@@ -76,6 +166,7 @@ export const experience = {
     {
       name: "Infosys",
       duration: "Feb 2013 - Dec 2017",
+      totalExp: "4 years 11 months",
       role: "Senior Software Developer",
       description: [
         "Designed and developed a responsive web interface for Data Manager using <strong>AngularJS</strong> and <strong>Bootstrap</strong>.",

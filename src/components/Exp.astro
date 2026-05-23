@@ -1,11 +1,11 @@
 ---
-import { experience } from "../config.ts";
+import { experience, sectionContent } from "../config.ts";
 ---
 
 <section class="resume section-card" id="experience">
   <header class="section-heading">
     <div>
-      <h2 class="article-title">Career journey and foundation</h2>
+      <h2 class="article-title">{sectionContent.experience.heading}</h2>
     </div>
   </header>
 
@@ -16,7 +16,7 @@ import { experience } from "../config.ts";
           <ion-icon name="briefcase-outline"></ion-icon>
         </div>
 
-        <h3 class="h3">Professional</h3>
+        <h3 class="h3">{sectionContent.experience.professionalHeading}</h3>
       </div>
 
       <ol class="timeline-list">
@@ -27,7 +27,10 @@ import { experience } from "../config.ts";
                 <h4 class="h4 title">{exp.name}</h4>
                 <span class="duration">{exp.duration}</span>
               </div>
-              <span class="role">{exp.role}</span>
+              <div class="role-meta-row">
+                <span class="role">{exp.role}</span>
+                {exp.totalExp && <span class="total-exp">{exp.totalExp}</span>}
+              </div>
               <ul class="timeline-description-list">
                 {(Array.isArray(exp.description)
                   ? exp.description
@@ -35,7 +38,10 @@ import { experience } from "../config.ts";
                 )
                   .filter(Boolean)
                   .map((description) => (
-                    <li class="timeline-description-item" set:html={description} />
+                    <li
+                      class="timeline-description-item"
+                      set:html={description}
+                    />
                   ))}
               </ul>
             </li>
@@ -49,7 +55,7 @@ import { experience } from "../config.ts";
         <div class="icon-box">
           <ion-icon name="school-outline"></ion-icon>
         </div>
-        <h3 class="h3">Education</h3>
+        <h3 class="h3">{sectionContent.experience.educationHeading}</h3>
       </div>
 
       <ol class="timeline-list">
@@ -104,7 +110,7 @@ import { experience } from "../config.ts";
   }
 
   .timeline-item:not(:last-child) {
-    margin-bottom: 1rem;
+    margin-bottom: 3rem;
   }
 
   .timeline-item-header {
@@ -131,13 +137,30 @@ import { experience } from "../config.ts";
     text-transform: uppercase;
   }
 
+  .role-meta-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 0.8rem;
+    margin-bottom: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .total-exp {
+    color: var(--text-secondary);
+    font-size: var(--fs-8);
+    font-weight: var(--fw-500);
+    line-height: 1.4;
+    text-transform: none;
+    letter-spacing: normal;
+  }
+
   .role {
     color: var(--vegas-gold);
     font-size: var(--fs-7);
     font-weight: var(--fw-600);
     line-height: 1.4;
     display: inline-block;
-    margin-bottom: 0.5rem;
   }
 
   .timeline-item:not(:last-child)::before {
@@ -146,7 +169,7 @@ import { experience } from "../config.ts";
     top: 0.2rem;
     left: -1.12rem;
     width: 1px;
-    height: calc(100% + 0.85rem);
+    height: calc(100% + 2.85rem);
     background: var(--border-subtle);
   }
 
@@ -170,7 +193,7 @@ import { experience } from "../config.ts";
   }
 
   .timeline-description-list {
-    margin-top: 0.3rem;
+    margin-top: 1rem;
     padding-left: 1rem;
     display: grid;
     gap: 0.38rem;
@@ -185,13 +208,24 @@ import { experience } from "../config.ts";
     list-style-type: disc;
     list-style-position: outside;
     color: var(--text-secondary);
-    font-size: var(--fs-7);
-    font-weight: var(--fw-300);
     line-height: 1.62;
   }
 
   .timeline-description-item::marker {
     color: var(--accent);
+  }
+
+  @media (max-width: 579px) {
+    .timeline-item-header,
+    .role-meta-row {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.2rem;
+    }
+
+    .role-meta-row {
+      margin-bottom: 0.45rem;
+    }
   }
 
   @media (min-width: 768px) {
@@ -207,5 +241,4 @@ import { experience } from "../config.ts";
       margin-left: 2.2rem;
     }
   }
-
 </style>

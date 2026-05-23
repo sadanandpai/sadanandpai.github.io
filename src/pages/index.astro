@@ -2,12 +2,14 @@
 import Layout from "../layouts/Layout.astro";
 import Profile from "../components/Profile.astro";
 import About from "../components/About.astro";
+import Skills from "../components/Skills.astro";
 import Nav from "../components/Nav.astro";
 import Exp from "../components/Exp.astro";
 import Work from "../components/Work.astro";
+import { site } from "../config.ts";
 ---
 
-<Layout title="Portfolio: Sadanand Pai">
+<Layout title={site.title}>
   <main class="page-shell" id="top">
     <div class="bg-glow bg-glow-left" aria-hidden="true"></div>
     <div class="bg-glow bg-glow-right" aria-hidden="true"></div>
@@ -15,6 +17,7 @@ import Work from "../components/Work.astro";
     <div class="main-content" id="content">
       <Nav />
       <About />
+      <Skills />
       <Exp />
       <Work />
     </div>

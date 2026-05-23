@@ -1,9 +1,55 @@
-<div align='center'>
-  <h1>
-    <a href='https://sadanandpai.github.io/'>My Portfolio</a>
-  </h1>
-  <a href='https://sadanandpai.github.io/'><img src='https://github.com/sadanandpai/sadanandpai.github.io/assets/12962887/37f490c8-1140-4d73-9c7a-744c44399104' alt='sadanand's portfolio' /></a>
-  <a href='https://sadanandpai.github.io/'><img src='https://github.com/sadanandpai/sadanandpai.github.io/assets/12962887/1d496673-351c-4156-8043-f109fd28a0ca' alt='lighthouse performance stats' /></a>
-</div>
+# Personal Portfolio
 
-[README to be updated]
+This repository contains the source code for [sadanandpai.github.io](https://sadanandpai.github.io/), a personal portfolio website built with Astro.
+
+The site highlights:
+- Professional profile and background
+- Skills and technologies
+- Experience timeline
+- Selected projects and blog links
+
+## Clone and Run Locally
+
+### Prerequisites
+- Node.js `>= 22.12.0`
+- npm (bundled with Node.js)
+
+### Setup
+
+```bash
+git clone https://github.com/sadanandpai/sadanandpai.github.io.git
+cd sadanandpai.github.io
+npm install
+```
+
+### Run
+
+```bash
+npm run dev
+```
+
+Open `http://localhost:4321` in your browser.
+
+### Build and Preview Production Output
+
+```bash
+npm run build
+npm run preview
+```
+
+## Tech Details
+
+- **Framework:** Astro
+- **Language:** TypeScript
+- **Module system:** ES modules (`"type": "module"`)
+- **Main config/data source:** `src/config.ts` (profile, sections, skills, experience, projects/blogs)
+- **Page entry:** `src/pages/index.astro`
+- **Key UI pieces:** `src/components/*` and `src/layouts/Layout.astro`
+- **Static assets:** `public/`
+
+### Scripts
+
+- `npm run dev` -> start local dev server
+- `npm run build` -> create production build in `dist/`
+- `npm run preview` -> preview production build locally
+- `npm run copy-to-docs` -> copy `dist/` to `docs/` (for static hosting workflows)

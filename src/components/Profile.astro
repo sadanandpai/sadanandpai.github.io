@@ -1,5 +1,5 @@
 ---
-import { profile } from "../config";
+import { profile, sectionContent } from "../config";
 ---
 
 <aside class="profile-card section-card" aria-label="Profile">
@@ -19,10 +19,7 @@ import { profile } from "../config";
     </div>
   </div>
 
-  <p class="intro">
-    Product-minded engineer focused on scalable frontend architecture, AI-native
-    UX, and developer-friendly systems.
-  </p>
+  <p class="intro">{sectionContent.profile.intro}</p>
 
   <div class="profile-content">
     <div class="separator"></div>
@@ -57,7 +54,9 @@ import { profile } from "../config";
     <div class="separator"></div>
 
     <div class="cta-group">
-      <a class="cta cta-secondary" href="#work">View my work</a>
+      <a class="cta cta-secondary" href="#work">
+        {sectionContent.profile.viewWorkLabel}
+      </a>
     </div>
 
     <ul class="social-list">
@@ -271,7 +270,10 @@ import { profile } from "../config";
     }
 
     .profile-header {
-      align-items: flex-start;
+      display: grid;
+      justify-items: center;
+      gap: var(--space-3);
+      text-align: center;
     }
 
     .avatar-box {
