@@ -85,7 +85,8 @@ export const skills: Record<string, string[]> = {
     "Playwright",
     "Storybook",
     "Express",
-    "SQL"
+    "SQL",
+    "Docker"
   ],
   "Skills & Exposure": [
     "Component Based Architecture",
@@ -105,14 +106,6 @@ export const skills: Record<string, string[]> = {
     "Machine Learning",
     "Large Language Models (LLMs)",
     "Retrieval Augmented Generation (RAG)",
-  ],
-  Tooling: [
-    "Git",
-    "Docker",
-    "Jira",
-    "Webpack",
-    "Vite",
-    "Cursor"
   ],
 };
 
@@ -290,6 +283,46 @@ export const work: Record<string, WorkCategory> = {
         name: "Frontend interview experience at CoinDCX",
         pic: "https://cdn.hashnode.com/res/hashnode/image/upload/v1638165211509/omXq_ApQz.png",
         link: "frontend-interview-experience-at-coindcx",
+      },
+    ],
+  },
+  talks: {
+    view: "grid",
+    items: [
+      {
+        name: "Frontend System Design of W3Schools",
+        pic: "https://img.youtube.com/vi/JwxzDXnDBhw/hqdefault.jpg",
+        link: "https://www.youtube.com/watch?v=JwxzDXnDBhw",
+      },
+      {
+        name: "Frontend Interview Preparation",
+        pic: "https://img.youtube.com/vi/fMeU-SBQKlU/hqdefault.jpg",
+        link: "https://www.youtube.com/watch?v=fMeU-SBQKlU",
+      },
+      {
+        name: "How to clear frontend interviews at Product companies?",
+        pic: "https://img.youtube.com/vi/LjpWXIT_XvY/hqdefault.jpg",
+        link: "https://www.youtube.com/watch?v=LjpWXIT_XvY",
+      },
+      {
+        name: "QA Tester to Software Developer",
+        pic: "https://img.youtube.com/vi/romK_9QyTVA/hqdefault.jpg",
+        link: "https://www.youtube.com/watch?v=romK_9QyTVA",
+      },
+      {
+        name: "State Management using Zustand for React",
+        pic: "https://img.youtube.com/vi/pP9gQr0nK2s/hqdefault.jpg",
+        link: "https://www.youtube.com/watch?v=pP9gQr0nK2s",
+      },
+      {
+        name: "Getting started with react-spring for animations",
+        pic: "https://img.youtube.com/vi/7SAgjHshGcQ/hqdefault.jpg",
+        link: "https://www.youtube.com/watch?v=7SAgjHshGcQ",
+      },
+      {
+        name: "Candidly Speaking with Sadanand Pai",
+        pic: "https://img.youtube.com/vi/uPK82gCBVdk/hqdefault.jpg",
+        link: "https://www.youtube.com/watch?v=uPK82gCBVdk",
       },
     ],
   },
