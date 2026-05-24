@@ -135,7 +135,9 @@ const resolveLink = (url: string) => {
     transition:
       color var(--transition-1),
       background-color var(--transition-1),
-      border-color var(--transition-1);
+      border-color var(--transition-1),
+      transform var(--transition-1),
+      box-shadow var(--transition-1);
   }
 
   .category button:hover,
@@ -143,12 +145,14 @@ const resolveLink = (url: string) => {
     color: var(--text-primary);
     background: var(--bg-elevated);
     border-color: var(--border-subtle);
+    transform: translateY(-1px);
   }
 
   .category button.active {
     color: var(--accent);
     background: var(--accent-soft);
     border-color: var(--border-strong);
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent) 18%, transparent);
   }
 
   .select-value,
@@ -162,6 +166,23 @@ const resolveLink = (url: string) => {
 
   .project-list {
     margin-bottom: 0;
+  }
+
+  .project-item {
+    --reveal-index: 0;
+  }
+
+  .project-list.is-revealing .project-item {
+    animation: work-card-reveal 300ms cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation-delay: calc(var(--reveal-index) * 28ms);
+  }
+
+  .project-list.is-revealing .project-item > a {
+    pointer-events: none;
+  }
+
+  .project-list.is-revealed .project-item > a {
+    pointer-events: auto;
   }
 
   .project-list a {
@@ -250,6 +271,12 @@ const resolveLink = (url: string) => {
     border-color: var(--border-strong);
   }
 
+  .project-item > a:focus-visible {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-2);
+    border-color: var(--border-strong);
+  }
+
   .project-item > a:hover .project-img::before {
     background-color: var(--image-overlay);
   }
@@ -301,6 +328,17 @@ const resolveLink = (url: string) => {
     font-weight: var(--fw-500);
   }
 
+  @keyframes work-card-reveal {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
   @media (max-width: 579px) {
     .project-list[data-view="list"] .project-item > a {
       flex-direction: column;
@@ -333,13 +371,40 @@ const resolveLink = (url: string) => {
     const sections = Array.from(
       portfolio.querySelectorAll<HTMLElement>("[data-category]"),
     );
+    const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const initialCategory =
+      buttons.find((button) => button.getAttribute("aria-selected") === "true")
+        ?.dataset.filterBtn ?? buttons[0]?.dataset.filterBtn ?? "";
+    let activeCategory = "";
 
-    const setCategory = (category: string) => {
-      sections.forEach((section) => {
-        const isActive = section.dataset.category === category;
-        section.hidden = !isActive;
-        section.tabIndex = isActive ? 0 : -1;
+    const applyCardReveal = (section: HTMLElement, animate: boolean) => {
+      section.classList.remove("is-revealing", "is-revealed");
+      const items = Array.from(section.querySelectorAll<HTMLElement>(".project-item"));
+
+      items.forEach((item, index) => {
+        item.style.setProperty("--reveal-index", String(index));
       });
+
+      if (!animate || reducedMotionQuery.matches || items.length === 0) {
+        section.classList.add("is-revealed");
+        return;
+      }
+
+      section.classList.add("is-revealing");
+
+      const totalDelay = Math.min(items.length, 10) * 28 + 320;
+      window.setTimeout(() => {
+        section.classList.remove("is-revealing");
+        section.classList.add("is-revealed");
+      }, totalDelay);
+    };
+
+    const setCategory = (category: string, animate = true) => {
+      if (!category || category === activeCategory) {
+        return;
+      }
+
+      activeCategory = category;
 
       buttons.forEach((button) => {
         const isActive = button.dataset.filterBtn === category;
@@ -347,11 +412,28 @@ const resolveLink = (url: string) => {
         button.setAttribute("aria-selected", isActive ? "true" : "false");
         button.tabIndex = isActive ? 0 : -1;
       });
+
+      const nextSection = sections.find(
+        (section) => section.dataset.category === category,
+      );
+      if (!nextSection) {
+        return;
+      }
+
+      sections.forEach((section) => {
+        const isActive = section === nextSection;
+        section.hidden = !isActive;
+        section.tabIndex = isActive ? 0 : -1;
+        if (!isActive) {
+          section.classList.remove("is-revealing", "is-revealed");
+        }
+      });
+
+      applyCardReveal(nextSection, animate);
     };
 
-    const firstButton = buttons[0];
-    if (firstButton?.dataset.filterBtn) {
-      setCategory(firstButton.dataset.filterBtn);
+    if (initialCategory) {
+      setCategory(initialCategory, false);
     }
 
     portfolio.addEventListener("click", (event) => {
