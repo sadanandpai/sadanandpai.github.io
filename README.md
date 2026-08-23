@@ -3,6 +3,7 @@
 This repository contains the source code for [sadanandpai.github.io](https://sadanandpai.github.io/), a personal portfolio website built with Astro.
 
 The site highlights:
+
 - Professional profile and background
 - Skills and technologies
 - Experience timeline
@@ -11,7 +12,8 @@ The site highlights:
 ## Clone and Run Locally
 
 ### Prerequisites
-- Node.js `>= 22.12.0`
+
+- Node.js `>= 24.19.0`
 - npm (bundled with Node.js)
 
 ### Setup
@@ -52,4 +54,3 @@ npm run preview
 - `npm run dev` -> start local dev server
 - `npm run build` -> create production build in `dist/`
 - `npm run preview` -> preview production build locally
-- `npm run copy-to-docs` -> copy `dist/` to `docs/` (for static hosting workflows)
