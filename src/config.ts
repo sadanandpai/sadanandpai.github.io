@@ -3,13 +3,13 @@ export const navbar = ["about", "skills", "experience", "work"];
 export const site = {
   title: "Portfolio: Sadanand Pai",
   description:
-    "Portfolio of Sadanand Pai - Frontend AI Engineer building modern product experiences.",
+    "Portfolio of Sadanand Pai - Full Stack + AI Engineer building modern product experiences.",
 };
 
 export const sectionContent = {
   profile: {
     intro:
-      "Product-minded engineer focused on scalable frontend architecture, AI-native UX, and developer-friendly systems.",
+      "Product-minded engineer focused on scalable architecture, applied AI engineering, and developer-friendly systems.",
     viewWorkLabel: "View my work",
   },
   about: {
@@ -33,7 +33,7 @@ export const sectionContent = {
 export const profile = {
   name: "Sadanand Pai",
   pic: "https://avatars.githubusercontent.com/u/12962887",
-  title: "Frontend AI Engineer",
+  title: "Full Stack + AI Engineer",
   email: "sadypai@gmail.com",
   location: "Bengaluru, India",
   social: {
@@ -45,8 +45,8 @@ export const profile = {
 
 export const about = {
   descriptions: [
-    `<strong>I am a Senior Frontend + AI Engineer with 10+ years of experience, currently driving web application development at Atlassian.</strong> I specialize in building scalable, high-performance user experiences using React, Next.js, TypeScript, and Node, with a strong focus on clean architecture, usability, and product impact.`,
-    `Alongside frontend engineering, I actively apply AI in practical product workflows through prompt engineering, RAG-based implementations, and AI-first UX thinking to create smarter, more intuitive experiences. I collaborate closely with designers, backend engineers, and product teams to ship reliable features end-to-end, and my open-source work has earned 15,000+ GitHub stars.`,
+    `<strong>I am a Senior Full Stack + AI Engineer with 13+ years of experience, currently driving web application development at Atlassian.</strong> I specialize in building scalable, high-performance web applications using Java, Spring, React, Next.js, TypeScript, and Node.js, with a strong focus on clean architecture, usability, and product impact.`,
+    `Alongside core web development, I actively apply AI in practical product workflows through prompt engineering, RAG-based implementations, and AI-first UX thinking to create smarter, more intuitive experiences. I collaborate closely with designers, backend engineers, and product teams to ship reliable features end-to-end, and my open-source work has earned 15,000+ GitHub stars.`,
   ],
   majors: {
     "Web Development":
@@ -61,51 +61,70 @@ export const about = {
 };
 
 export const skills: Record<string, string[]> = {
-  "Technical Expertise": [
-    "NextJS",
-    "React",
-    "Angular",
-    "Node.js",
+  "Languages & Web Foundations": [
+    "Java",
     "JavaScript",
     "TypeScript",
+    "SQL",
     "HTML5",
     "CSS3",
+    "Python",
+  ],
+  "Frameworks & Libraries": [
+    "Spring",
+    "React",
+    "Next.js",
+    "Angular",
+    "Node.js",
+    "Express",
+    "Redux",
+    "React Query",
+    "GraphQL",
+    "Tailwind CSS",
+    "SCSS",
+  ],
+  "Databases & Cloud": [
+    "PostgreSQL",
+    "DynamoDB",
+    "Redis",
+    "Vector DBs",
+    "AWS Cloud",
+    "Amazon SQS",
+    "Docker",
+  ],
+  "Architecture & Engineering": [
+    "System Design",
     "Algorithms",
     "Data Structures",
     "Problem Solving",
-    "System Design",
-  ],
-  "Frameworks & Libraries": [
-    "Redux",
-    "GraphQL",
-    "React Query",
-    "SCSS",
-    "Tailwind",
-    "Vitest",
-    "Playwright",
-    "Storybook",
-    "Express",
-    "SQL",
-    "Docker"
-  ],
-  "Skills & Exposure": [
-    "Component Based Architecture",
-    "Agile Methodology",
-    "RESTful architecture",
-    "Model View Controller (MVC)",
+    "Microservices",
+    "REST APIs",
+    "MVC",
     "Design Patterns",
+    "Micro Frontend",
+  ],
+  "Testing & Development Practices": [
+    "Playwright",
+    "Vitest",
+    "Mockito",
+    "Storybook",
+    "Maven",
+    "CI/CD",
+    "Agile Methodology",
     "Test Driven Development",
     "Spec Driven Development",
-    "Prompt Engineering"
   ],
-  "AI Engineering": [
+  "AI & Machine Learning": [
+    "Machine Learning",
+    "LLMs",
+    "RAG",
+    "LangChain",
+    "Agentic AI",
+    "Prompt Engineering",
     "NumPy",
     "Pandas",
     "Scikit-learn",
     "TensorFlow",
-    "Machine Learning",
-    "Large Language Models (LLMs)",
-    "Retrieval Augmented Generation (RAG)",
   ],
 };
 
@@ -114,25 +133,23 @@ export const experience = {
     {
       name: "Atlassian",
       duration: "Nov 2023 - Present",
-      totalExp: "2+ years",
-      role: "Senior Software Developer",
+      totalExp: "3 years",
+      role: "Senior Software Engineer 2",
       description: [
-        "Serving as Feature Lead for a cross-product approval management system at Atlassian, delivering scalable, high-quality capabilities in React.",
-        "Played a key role in bootstrapping a unified Partner portal by establishing core platform foundations and observability instrumentation.",
-        "Engineered an AI-driven partner ranking solution that transformed large-scale partner health data into actionable machine learning insights.",
-        "Led specification-driven development for new initiatives, guiding the team to deliver maintainable, production-grade features with consistent quality.",
+        "Leading end-to-end delivery of quote lifecycle capabilities as a feature lead for Quotes, a Java-based product within Atlassian's commerce platform.",
+        "Contributed to bootstrapping a unified Partner Portal as a full-stack engineer, establishing core platform foundations and observability instrumentation.",
+        "Led the team's adoption of AI-assisted, spec-driven development and harness engineering to deliver production-grade features with consistent implementation quality.",
       ],
     },
     {
       name: "CoinDCX",
       duration: "Apr 2021 - Oct 2023",
-      totalExp: "2 years 7 months",
-      role: "Senior Software Developer",
+      totalExp: "2 years 6 months",
+      role: "SDE 3 - Frontend",
       description: [
-        "Led the foundation & design of highly performant <a href='https://coindcx.com/futures/'>Advanced Web Trading Terminal</a> for crypto using <strong>NextJS</strong>.",
-        "Architected and built a complete payment module from scratch for deposits and withdrawals in <strong>React</strong> & <strong>Angular</strong>.",
-        "Drove the setup & integration of tools such as <strong>Storybook</strong>, <strong>Docker</strong>, <strong>Vitest</strong>, etc. to build stable production ready system with great developer productivity.",
-        "Inititated the repo using lerna to build sharable components and libraries for the team to use across the projects.",
+        'Led the architecture and frontend foundation of an <a href="https://coindcx.com/futures/">advanced crypto trading terminal</a> using Next.js, shaping the design for high-performance trading workflows.',
+        "Architected and developed the payment module from the ground up using Next.js and Angular, supporting deposit and withdrawal workflows.",
+        "Established a Lerna-based monorepo for shared component libraries, improving code reuse and consistency across frontend applications.",
       ],
     },
     {
@@ -141,16 +158,16 @@ export const experience = {
       totalExp: "2 years",
       role: "Senior Software Developer",
       description: [
-        "Architected and developed an Employee Customer relationship management system using <strong>ReactJS</strong> and <strong>Redux Toolkit</strong> with insustry standard practices.",
-        "Rebuilt the Dealer Locator web app for responsive, pixel-perfect experiences using <strong>HTML</strong>, <strong>CSS</strong>, and <strong>jQuery</strong> with Google Maps features.",
-        "Contributed to multilingual support and complex enhancements to state management for an <strong>Angular</strong> application called Fender Selection Tool.",
+        "Architected and developed Employee Customer system using React and Redux Toolkit with best practices.",
+        "Rebuilt Dealer Locator webapp for responsiveness with pixel perfection using HTML, CSS and jQuery having Google Maps features.",
+        "Involved in multi language support and complex enhancements for an Angular web app called Fender Selection Tool.",
       ],
     },
     {
       name: "TEKSystems",
-      duration: "Mar 2018 - Feb 2019",
+      duration: "Feb 2018 - Feb 2019",
       totalExp: "1 year",
-      role: "Senior Software Developer",
+      role: "Automation Consultant",
       description: [
         "Built <strong>authentication & authorization</strong> for a User Management System.",
         "Worked on major <strong>CRUD</strong> workflows using an <strong>OAuth</strong>-based strategy.",
@@ -160,7 +177,7 @@ export const experience = {
       name: "Infosys",
       duration: "Feb 2013 - Dec 2017",
       totalExp: "4 years 11 months",
-      role: "Senior Software Developer",
+      role: "Senior Systems Engineer",
       description: [
         "Designed and developed a responsive web interface for Data Manager using <strong>AngularJS</strong> and <strong>Bootstrap</strong>.",
         "Built an <strong>end-to-end automation framework</strong> in Java & Jubula for Huawei's network configuration assistant tool.",
@@ -181,7 +198,7 @@ type ProjectItem = {
   pic: string;
   link: string;
   description: string;
-  tags: string[];
+  tags?: string[];
 };
 
 type BlogItem = {
@@ -200,23 +217,15 @@ export const work: Record<string, WorkCategory> = {
     items: [
       {
         name: "Javascript Code Challenges",
-        pic: "/images/work/1.png",
+        pic: "/images/work/javascript-code-challenges.webp",
         link: "https://github.com/sadanandpai/javascript-code-challenges",
         description:
           "Curated set of modern JavaScript interview challenges spanning core concepts, async, ES6+, and problem-solving — built to take you from beginner to expert.",
         tags: ["JavaScript", "ES6+", "Interview Prep"],
       },
       {
-        name: "Frontend Learning Kit",
-        pic: "/images/work/2.png",
-        link: "https://github.com/sadanandpai/frontend-learning-kit",
-        description:
-          "Opinionated frontend learning guide covering JavaScript, React, Angular, CSS, and system design fundamentals — a one-stop curated path for aspiring web developers.",
-        tags: ["React", "Angular", "Vue", "CSS"],
-      },
-      {
         name: "Frontend Mini Challenges",
-        pic: "/images/work/3.png",
+        pic: "/images/work/frontend-mini-challenges.webp",
         link: "https://github.com/sadanandpai/frontend-mini-challenges",
         description:
           "Hands-on collection of small frontend interview challenges focused on HTML, CSS, and JavaScript fundamentals — built to sharpen real-world UI engineering skills.",
@@ -224,7 +233,7 @@ export const work: Record<string, WorkCategory> = {
       },
       {
         name: "Resume Builder",
-        pic: "/images/work/4.png",
+        pic: "/images/work/resume-builder.webp",
         link: "https://github.com/sadanandpai/resume-builder",
         description:
           "Create a clean, single-page, professional resume in minutes through a guided form-driven editor — with customisable templates and themes!",
@@ -232,12 +241,54 @@ export const work: Record<string, WorkCategory> = {
       },
       {
         name: "Algo Visualizers",
-        pic: "/images/work/5.png",
+        pic: "/images/work/algo-visualizers.webp",
         link: "https://github.com/sadanandpai/algo-visualizers",
         description:
           "Interactive visualizer for sorting and pathfinding algorithms including BFS, DFS, and maze generation using generators and iterators design patterns",
         tags: ["React", "Redux Toolkit", "TypeScript", "Algorithms"],
-      }
+      },
+      {
+        name: "ClearFrontend",
+        pic: "/images/work/clearfrontend.svg",
+        link: "https://github.com/sadanandpai/clearfrontend",
+        description:
+          "Free, open-source coding practice platform with browser-based JavaScript challenges, instant feedback, and shareable solutions to help developers learn by doing.",
+        tags: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
+      },
+    ],
+  },
+
+  resources: {
+    view: "list",
+    items: [
+      {
+        name: "Frontend Learning Kit",
+        pic: "/images/resources/frontend-learning-kit.webp",
+        link: "https://github.com/sadanandpai/frontend-learning-kit",
+        description:
+          "Opinionated frontend learning guide covering JavaScript, React, Angular, CSS, and system design fundamentals — a one-stop curated path for aspiring web developers.",
+      },
+      {
+        name: "AI Learning Kit",
+        pic: "/images/resources/ai-learning-kit.webp",
+        link: "https://github.com/sadanandpai/ai-learning-kit",
+        description:
+          "Curated collection of AI learning materials to help developers explore concepts, find useful references, and build practical knowledge at their own pace.",
+      },
+      {
+        name: "Git Guide",
+        pic: "/images/resources/git-guide.webp",
+        link: "https://github.com/sadanandpai/git-guide",
+        description:
+          "Practical guide to everyday Git commands with clear examples for managing changes, working with branches, and collaborating with confidence.",
+      },
+      {
+        name: "DSA Interview Challenges",
+        pic: "/images/resources/dsa-interview-challenges.webp",
+        link: "https://github.com/sadanandpai/dsa-interview-challenges",
+        description:
+          "Curated data structures and algorithms challenges with solutions to help developers strengthen problem-solving skills and prepare for engineering interviews.",
+      },
     ],
   },
 

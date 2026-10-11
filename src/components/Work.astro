@@ -111,12 +111,32 @@ const resolveLink = (url: string) => {
     display: flex;
     gap: 0.6rem;
     overflow-x: auto;
-    scrollbar-width: none;
-    padding-bottom: 0.15rem;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border-strong) transparent;
+    padding-bottom: 0.4rem;
   }
 
   .items-list::-webkit-scrollbar {
-    display: none;
+    height: 4px;
+  }
+
+  .items-list::-webkit-scrollbar-thumb {
+    background: var(--border-strong);
+    border-radius: var(--radius-pill);
+  }
+
+  @media (max-width: 767px) {
+    .items-list {
+      flex-wrap: wrap;
+      overflow-x: visible;
+      gap: 0.35rem;
+      padding-bottom: 0;
+    }
+
+    .category button {
+      min-height: 44px;
+      padding-inline: 0.75rem;
+    }
   }
 
   .category {

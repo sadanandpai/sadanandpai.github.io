@@ -250,6 +250,58 @@ import { profile, sectionContent } from "../config";
     background: var(--accent-soft);
   }
 
+  @media (max-width: 767px) {
+    .profile-card {
+      gap: 0.85rem;
+    }
+
+    .avatar-box {
+      width: 64px;
+      height: 64px;
+      border-radius: 16px;
+    }
+
+    .profile-header {
+      gap: 0.85rem;
+    }
+
+    .intro {
+      font-size: var(--fs-7);
+      line-height: 1.5;
+    }
+
+    .profile-content {
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 0.85rem;
+      align-items: center;
+    }
+
+    .separator,
+    .contact-item .icon-box {
+      display: none;
+    }
+
+    .contacts-list {
+      grid-column: 1 / -1;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 0.75rem;
+    }
+
+    .contact-title {
+      font-size: 0.72rem;
+      margin-bottom: 0;
+    }
+
+    .social-list {
+      gap: 0.4rem;
+    }
+
+    .social-link {
+      width: 40px;
+      height: 40px;
+    }
+  }
+
   @media (min-width: 580px) {
     .avatar-box {
       width: 100px;
